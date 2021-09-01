@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core.data.Note
 import com.example.notes.databinding.ListItemNoteBinding
 
-class NotesListAdapter(val clickListener: NotesListClickListener) :
+class NotesListAdapter(private val clickListener: NotesListClickListener) :
     ListAdapter<Note, NotesListAdapter.ViewHolder>(NotesDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,11 +30,6 @@ class NotesListAdapter(val clickListener: NotesListClickListener) :
             // can be slightly faster to size the views
             binding.executePendingBindings()
             binding.listener = clickListener
-//            binding.tvTitle.text = note.title
-//            binding.tvContent.text = note.content
-//            val sdf = SimpleDateFormat("MMMM dd, HH:mm:ss")
-//            val resultDate = Date(note.updateTime)
-//            binding.tvDate.text = "Last update: ${sdf.format(resultDate)}"
         }
 
         companion object {
