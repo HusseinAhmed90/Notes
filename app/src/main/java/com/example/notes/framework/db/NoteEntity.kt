@@ -27,5 +27,5 @@ data class NoteEntity(
         )
     }
 
-    fun toNote() = Note(title, content, creationTime, updateTime, id)
+    fun toNote() = Note(title, content, creationTime, updateTime, id, wordsCount = "")
 }

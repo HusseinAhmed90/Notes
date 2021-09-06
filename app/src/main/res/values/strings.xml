@@ -7,4 +7,5 @@
     <string name="Content">Content</string>
     <string name="last_update">Last Update</string>
     <string name="delete_note">Delete Note</string>
+    <string name="num_of_words">100 Words</string>
 </resources>
