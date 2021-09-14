@@ -6,10 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.core.data.Note
 import com.example.core.repository.NoteRepository
-import com.example.core.usecase.AddNote
-import com.example.core.usecase.GetAllNotes
-import com.example.core.usecase.GetNote
-import com.example.core.usecase.RemoveNote
+import com.example.core.usecase.*
 import com.example.notes.framework.NoteUseCases
 import com.example.notes.framework.RoomNoteDataSource
 import kotlinx.coroutines.CoroutineScope
@@ -26,14 +23,17 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         AddNote((repository)),
         GetAllNotes((repository)),
         GetNote((repository)),
-        RemoveNote((repository))
+        RemoveNote((repository)),
+        GetWordsCount()
     )
 
     private val _saved = MutableLiveData<Boolean>()
-    val saved :LiveData<Boolean> = _saved
+    val saved :LiveData<Boolean>
+        get() = _saved
 
     private val _currentNote = MutableLiveData<Note>()
-    val currentNote :LiveData<Note> = _currentNote
+    val currentNote :LiveData<Note>
+        get() = _currentNote
 
     init {
         _saved.value = false
@@ -48,6 +48,20 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
     fun navigationEnd() {
         _saved.value = false
+    }
+
+    fun getNote(id: Long){
+        coroutineScope.launch {
+            val note = useCase.getNote(id)
+            _currentNote.postValue(note)
+        }
+    }
+
+    fun deleteNote(note: Note){
+        coroutineScope.launch {
+            useCase.removeNote(note)
+            _saved.postValue(true)
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.notes.presentation.screens.list
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -62,7 +63,7 @@ class ListFragment : Fragment(), NotesListClickListener {
         goToNoteDetailsFragment(id)
     }
 
-    private fun goToNoteDetailsFragment(id: Long = 0L) {
+    private fun goToNoteDetailsFragment(id: Long) {
         val action = ListFragmentDirections.actionListFragmentToNoteFragment(id)
         findNavController().navigate(action)
     }

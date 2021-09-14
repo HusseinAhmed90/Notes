@@ -54,11 +54,23 @@
             <TextView
                 android:id="@+id/tvDate"
                 style="@style/Detail"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:lastUpdateTime="@{note}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="@string/last_update" />
+
+            <TextView
+                android:id="@+id/tvWordCount"
+                style="@style/Detail"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:lastUpdateTime="@{note}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="@string/last_update" />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="@string/num_of_words"
+                android:text="@{note.wordsCount}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
