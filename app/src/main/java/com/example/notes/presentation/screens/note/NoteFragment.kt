@@ -57,7 +57,7 @@ class NoteFragment : Fragment() {
         }
 
         viewModel.currentNote.observe(viewLifecycleOwner, Observer {
-            it.apply {
+            it?.apply {
                 note = it
                 binding.etTitle.setText(it.title)
                 binding.etContent.setText(it.content)
