@@ -34,7 +34,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application){
         coroutineScope.launch {
             val noteList = useCases.getAllNotes()
             noteList.forEach {
-                it.wordsCount = "${useCases.wordsCount} word/s"
+                it.wordsCount = "${useCases.wordsCount.invoke(it)} word/s"
             }
             _notes.postValue(noteList)
         }
